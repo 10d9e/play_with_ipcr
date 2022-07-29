@@ -33,4 +33,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_ORG }}/estuary:latest , ${{ secrets.DOCKERHUB_ORG }}/estuary:${{ steps.get_version.outputs.VERSION }}
+          tags: outercore/estuary:latest , outercore/estuary:${{ steps.get_version.outputs.VERSION }}
+
