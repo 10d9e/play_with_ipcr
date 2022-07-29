@@ -3,8 +3,8 @@ name: Docker
 on:
   push:
     # run only against tags
-    tags:
-      - '*'
+    #tags:
+    #  - '*'
 
 jobs:
   docker:
@@ -27,10 +27,7 @@ jobs:
           echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
 
       - name: Build and push
-        env:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: outercore/toy:latest , outercore/toy:${{ steps.get_version.outputs.VERSION }}
+        run: |
+          docker build -t toybox .
+          docker tag toybox ipcr.io/toybox:v1
+          docker push ipcr.io/toybox:v1
