@@ -33,5 +33,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: outercore/estuary:latest , outercore/estuary:${{ steps.get_version.outputs.VERSION }}
+          tags: outercore/toy:latest , outercore/toy:${{ steps.get_version.outputs.VERSION }}
 
