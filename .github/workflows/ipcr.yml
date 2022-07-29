@@ -17,8 +17,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ipcr.io
-          username: ''
-          password: ''
+          username: foo
+          password: bar
 
       - name: Get the version (git tag)
         id: get_version
