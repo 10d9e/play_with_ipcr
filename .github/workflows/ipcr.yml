@@ -20,15 +20,9 @@ jobs:
           username: foo
           password: bar
 
-      - name: Get the version (git tag)
-        id: get_version
-        run: |
-          echo ${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
       - name: Build and push
         env:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
+          VERSION: v1.0
         uses: docker/build-push-action@v3
         with:
           context: .
