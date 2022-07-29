@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: outercore/toy:latest , outercore/toy:${{ steps.get_version.outputs.VERSION }}
+          tags: toy:latest , toy:${{ steps.get_version.outputs.VERSION }}
 
