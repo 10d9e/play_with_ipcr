@@ -3,8 +3,8 @@ name: Docker
 on:
   push:
     # run only against tags
-    #tags:
-    #  - '*'
+    tags:
+      - '*'
 
 jobs:
   docker:
@@ -20,12 +20,17 @@ jobs:
           username: foo
           password: bar
 
+      - name: Get the version (git tag)
+        id: get_version
+        run: |
+          echo ${GITHUB_REF/refs\/tags\//}
+          echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+
       - name: Build and push
         env:
-          VERSION: v1.0
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: toy:latest , toy:${{ steps.get_version.outputs.VERSION }}
-
+          tags: outercore/toy:latest , outercore/toy:${{ steps.get_version.outputs.VERSION }}
